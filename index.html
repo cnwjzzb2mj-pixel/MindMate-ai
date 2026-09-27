@@ -1,9 +1,10 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindMate AI</title>
+  <meta name="theme-color" content="#6C63FF">
+  <title>MindMate</title>
 
   <style>
     * {
@@ -14,8 +15,8 @@
     }
 
     body {
-      background: #f4f7fb;
-      color: #172033;
+      background: #f5f6ff;
+      color: #20213a;
       min-height: 100vh;
     }
 
@@ -23,115 +24,149 @@
       max-width: 500px;
       margin: auto;
       min-height: 100vh;
-      background: white;
-      display: flex;
-      flex-direction: column;
+      background: #ffffff;
+      padding-bottom: 90px;
     }
 
-    /* HEADER */
     header {
-      background: linear-gradient(135deg, #6c63ff, #8f87ff);
+      background: linear-gradient(135deg, #6c63ff, #8b7cff);
       color: white;
-      padding: 28px 20px 24px;
+      padding: 30px 22px;
       border-radius: 0 0 28px 28px;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    header h1 {
+      font-size: 30px;
+      margin-bottom: 6px;
     }
 
-    .logo-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 15px;
-      background: rgba(255,255,255,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 25px;
+    header p {
+      opacity: 0.9;
+      font-size: 15px;
     }
 
-    .logo h1 {
-      font-size: 25px;
+    section {
+      padding: 22px;
     }
 
-    .logo p {
-      font-size: 13px;
-      opacity: 0.85;
-      margin-top: 2px;
-    }
-
-    /* WELCOME */
     .welcome {
-      padding: 25px 20px 10px;
+      margin-top: -5px;
     }
 
-    .welcome h2 {
-      font-size: 25px;
-      margin-bottom: 7px;
-    }
-
-    .welcome p {
-      color: #70798a;
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    /* MOOD */
-    .mood-box {
-      margin: 18px 20px;
-      padding: 18px;
-      background: #f5f4ff;
+    .card {
+      background: #fff;
       border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 5px 20px rgba(40, 40, 80, 0.08);
     }
 
-    .mood-box h3 {
-      font-size: 16px;
-      margin-bottom: 14px;
+    .card h2 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #70718a;
+      line-height: 1.5;
     }
 
     .moods {
       display: flex;
       justify-content: space-between;
+      margin-top: 18px;
     }
 
     .mood {
       border: none;
-      background: white;
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      font-size: 25px;
+      background: #f3f3ff;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      font-size: 28px;
       cursor: pointer;
-      transition: 0.2s;
     }
 
-    .mood:hover {
-      transform: scale(1.08);
+    .mood:active {
+      transform: scale(0.95);
     }
 
-    /* CHAT */
-    .chat-container {
-      flex: 1;
-      padding: 10px 20px 90px;
+    .selected {
+      background: #dedcff;
+      outline: 3px solid #6c63ff;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .feature {
+      border: none;
+      padding: 20px;
+      border-radius: 20px;
+      background: #f5f5ff;
+      text-align: left;
+      cursor: pointer;
+      min-height: 125px;
+    }
+
+    .feature span {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .feature strong {
+      font-size: 15px;
+      color: #24243c;
+    }
+
+    .feature small {
+      display: block;
+      color: #77788d;
+      margin-top: 5px;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .back {
+      border: none;
+      background: none;
+      color: #6c63ff;
+      font-size: 16px;
+      margin-bottom: 18px;
+      cursor: pointer;
+    }
+
+    .chat-box {
+      height: 430px;
       overflow-y: auto;
+      background: #f7f7ff;
+      border-radius: 20px;
+      padding: 15px;
+      margin-bottom: 12px;
     }
 
     .message {
       max-width: 82%;
-      padding: 13px 16px;
+      padding: 12px 15px;
       border-radius: 18px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       line-height: 1.45;
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .bot {
-      background: #f0f2f7;
+      background: white;
       border-bottom-left-radius: 5px;
-      color: #303849;
     }
 
     .user {
@@ -141,338 +176,531 @@
       border-bottom-right-radius: 5px;
     }
 
-    /* QUICK BUTTONS */
-    .quick-buttons {
-      padding: 8px 20px;
+    .chat-input {
       display: flex;
       gap: 8px;
-      overflow-x: auto;
     }
 
-    .quick-buttons button {
-      border: 1px solid #dddff0;
-      background: white;
-      padding: 9px 14px;
-      border-radius: 20px;
-      white-space: nowrap;
+    .chat-input input {
+      flex: 1;
+      border: 1px solid #ddddee;
+      border-radius: 15px;
+      padding: 14px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .send {
+      border: none;
+      background: #6c63ff;
+      color: white;
+      width: 50px;
+      border-radius: 15px;
+      font-size: 20px;
       cursor: pointer;
-      color: #555d70;
     }
 
-    /* INPUT */
-    .input-area {
+    textarea {
+      width: 100%;
+      height: 250px;
+      border: 1px solid #ddddee;
+      border-radius: 18px;
+      padding: 15px;
+      resize: none;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .save {
+      width: 100%;
+      margin-top: 12px;
+      padding: 15px;
+      border: none;
+      border-radius: 16px;
+      background: #6c63ff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .activity {
+      background: #f5f5ff;
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+
+    .activity h3 {
+      margin-bottom: 7px;
+    }
+
+    .activity p {
+      color: #70718a;
+      line-height: 1.5;
+    }
+
+    .help {
+      background: #fff4f4;
+      border-left: 5px solid #ff7676;
+    }
+
+    .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 100%;
-      max-width: 500px;
+      width: min(500px, 100%);
       background: white;
-      padding: 12px 15px;
-      border-top: 1px solid #eee;
       display: flex;
-      gap: 9px;
+      justify-content: space-around;
+      padding: 10px 5px;
+      border-top: 1px solid #eeeeF5;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
+      z-index: 10;
     }
 
-    .input-area input {
-      flex: 1;
-      border: 1px solid #ddd;
-      border-radius: 25px;
-      padding: 13px 16px;
-      outline: none;
-      font-size: 14px;
-    }
-
-    .send {
-      width: 48px;
-      height: 48px;
+    .nav-btn {
       border: none;
-      border-radius: 50%;
-      background: #6c63ff;
-      color: white;
-      font-size: 19px;
+      background: none;
+      color: #77788d;
+      font-size: 12px;
       cursor: pointer;
+      padding: 5px 12px;
     }
 
-    /* FOOTER */
-    .safety {
-      text-align: center;
-      font-size: 11px;
-      color: #9299a8;
-      padding: 8px 20px 75px;
-      line-height: 1.4;
+    .nav-btn span {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 3px;
     }
 
-    @media (min-width: 501px) {
-      body {
-        padding: 20px 0;
-      }
+    .nav-btn.active {
+      color: #6c63ff;
+    }
 
-      .app {
-        border-radius: 25px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-        overflow: hidden;
-      }
+    .tip {
+      background: linear-gradient(135deg, #eef0ff, #f8f7ff);
+      border-radius: 20px;
+      padding: 18px;
+      margin-top: 15px;
+    }
 
-      .input-area {
-        border-radius: 0 0 25px 25px;
-      }
+    .tip strong {
+      color: #6c63ff;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <!-- HEADER -->
+  <!-- HOME -->
+  <div id="home" class="screen active">
+
     <header>
-      <div class="logo">
-        <div class="logo-icon">🧠</div>
-
-        <div>
-          <h1>MindMate AI</h1>
-          <p>Your supportive space</p>
-        </div>
-      </div>
+      <h1>Hey there 👋</h1>
+      <p>Welcome to MindMate — a safe space to pause, reflect and recharge.</p>
     </header>
 
-    <!-- WELCOME -->
-    <section class="welcome">
-      <h2>Hi 👋</h2>
+    <section>
 
-      <p>
-        I'm MindMate. You can talk to me about your feelings,
-        worries, school, friendships, or anything that's on your mind.
+      <div class="card">
+        <h2>How are you feeling today?</h2>
+        <p>Choose the feeling that fits you best right now.</p>
+
+        <div class="moods">
+          <button class="mood" onclick="selectMood(this, 'Great')">😄</button>
+          <button class="mood" onclick="selectMood(this, 'Good')">🙂</button>
+          <button class="mood" onclick="selectMood(this, 'Okay')">😐</button>
+          <button class="mood" onclick="selectMood(this, 'Sad')">😔</button>
+          <button class="mood" onclick="selectMood(this, 'Stressed')">😣</button>
+        </div>
+
+        <p id="moodMessage" style="margin-top:15px;"></p>
+      </div>
+
+      <div class="tip">
+        <strong>🌱 Today's reminder</strong>
+        <p style="margin-top:7px;">
+          You don't have to solve everything at once. Taking one small step is enough.
+        </p>
+      </div>
+
+      <h2 style="margin:25px 0 14px;">What would you like to do?</h2>
+
+      <div class="feature-grid">
+
+        <button class="feature" onclick="showScreen('chat')">
+          <span>💬</span>
+          <strong>Talk to MindMate</strong>
+          <small>Share what's on your mind</small>
+        </button>
+
+        <button class="feature" onclick="showScreen('journal')">
+          <span>📔</span>
+          <strong>My Journal</strong>
+          <small>Write your thoughts</small>
+        </button>
+
+        <button class="feature" onclick="showScreen('activities')">
+          <span>🌿</span>
+          <strong>Calm Activities</strong>
+          <small>Take a relaxing break</small>
+        </button>
+
+        <button class="feature" onclick="showScreen('help')">
+          <span>🆘</span>
+          <strong>Get Help</strong>
+          <small>Find trusted support</small>
+        </button>
+
+      </div>
+
+    </section>
+  </div>
+
+
+  <!-- CHAT -->
+  <div id="chat" class="screen">
+
+    <section>
+      <button class="back" onclick="showScreen('home')">← Back</button>
+
+      <h1 style="margin-bottom:8px;">💬 MindMate Chat</h1>
+      <p style="color:#77788d;margin-bottom:18px;">
+        I'm here to listen and help you think things through.
+      </p>
+
+      <div class="chat-box" id="chatBox">
+        <div class="message bot">
+          Hey! 👋 I'm MindMate. What's on your mind today?
+        </div>
+      </div>
+
+      <div class="chat-input">
+        <input id="chatInput" type="text" placeholder="Type a message...">
+        <button class="send" onclick="sendMessage()">➤</button>
+      </div>
+
+      <p style="font-size:12px;color:#999;margin-top:10px;">
+        MindMate is a wellbeing tool, not a replacement for a trusted adult,
+        counsellor, doctor, or emergency service.
       </p>
     </section>
-
-    <!-- MOOD -->
-    <section class="mood-box">
-      <h3>How are you feeling today?</h3>
-
-      <div class="moods">
-        <button class="mood" onclick="selectMood('😊 Happy')">😊</button>
-        <button class="mood" onclick="selectMood('🙂 Okay')">🙂</button>
-        <button class="mood" onclick="selectMood('😐 Meh')">😐</button>
-        <button class="mood" onclick="selectMood('😔 Sad')">😔</button>
-        <button class="mood" onclick="selectMood('😡 Angry')">😡</button>
-      </div>
-    </section>
-
-    <!-- CHAT -->
-    <main class="chat-container" id="chat">
-
-      <div class="message bot">
-        Hey! I'm here to listen. What's on your mind?
-      </div>
-
-    </main>
-
-    <!-- QUICK BUTTONS -->
-    <div class="quick-buttons">
-
-      <button onclick="quickMessage('I feel stressed')">
-        😣 I'm stressed
-      </button>
-
-      <button onclick="quickMessage('I feel lonely')">
-        🥺 I'm lonely
-      </button>
-
-      <button onclick="quickMessage('School is difficult')">
-        📚 School
-      </button>
-
-    </div>
-
-    <!-- SAFETY -->
-    <div class="safety">
-      MindMate is a supportive tool, not a replacement for a
-      qualified mental-health professional. If you feel unsafe,
-      please tell a trusted adult or contact local emergency services.
-    </div>
-
-    <!-- INPUT -->
-    <div class="input-area">
-
-      <input
-        type="text"
-        id="userInput"
-        placeholder="Talk to MindMate..."
-        onkeypress="handleEnter(event)"
-      >
-
-      <button class="send" onclick="sendMessage()">
-        ➤
-      </button>
-
-    </div>
 
   </div>
 
 
-  <script>
+  <!-- JOURNAL -->
+  <div id="journal" class="screen">
 
-    /* SEND MESSAGE */
+    <section>
+      <button class="back" onclick="showScreen('home')">← Back</button>
 
-    function sendMessage() {
+      <h1>📔 My Journal</h1>
+      <p style="color:#77788d;margin:8px 0 18px;">
+        Write anything you'd like to remember or reflect on.
+      </p>
 
-      const input = document.getElementById("userInput");
-      const message = input.value.trim();
+      <textarea id="journalText"
+        placeholder="Dear journal..."></textarea>
 
-      if (message === "") {
-        return;
-      }
+      <button class="save" onclick="saveJournal()">Save Journal Entry</button>
 
-      addMessage(message, "user");
+      <p id="journalStatus"
+         style="text-align:center;margin-top:12px;color:#6c63ff;">
+      </p>
+    </section>
 
-      input.value = "";
+  </div>
 
-      setTimeout(function() {
-        botReply(message);
-      }, 700);
+
+  <!-- ACTIVITIES -->
+  <div id="activities" class="screen">
+
+    <section>
+      <button class="back" onclick="showScreen('home')">← Back</button>
+
+      <h1>🌿 Calm Activities</h1>
+      <p style="color:#77788d;margin:8px 0 18px;">
+        Try one of these simple activities.
+      </p>
+
+      <div class="activity">
+        <h3>🌬️ Slow Breathing</h3>
+        <p>
+          Breathe in slowly for a few seconds, pause briefly,
+          then breathe out slowly. Repeat several times.
+        </p>
+      </div>
+
+      <div class="activity">
+        <h3>👀 5 Things Around You</h3>
+        <p>
+          Notice five things you can see, four things you can touch,
+          and three things you can hear.
+        </p>
+      </div>
+
+      <div class="activity">
+        <h3>📝 Brain Dump</h3>
+        <p>
+          Write down everything you're thinking about without worrying
+          about spelling or making it perfect.
+        </p>
+      </div>
+
+      <div class="activity">
+        <h3>🚶 Take a Short Break</h3>
+        <p>
+          Step away from your screen for a few minutes, stretch gently,
+          drink some water, or spend time somewhere comfortable.
+        </p>
+      </div>
+
+    </section>
+  </div>
+
+
+  <!-- HELP -->
+  <div id="help" class="screen">
+
+    <section>
+      <button class="back" onclick="showScreen('home')">← Back</button>
+
+      <h1>🆘 Get Help</h1>
+
+      <div class="card">
+        <h2>You don't have to handle everything alone.</h2>
+        <p>
+          If something feels too difficult, talk to someone you trust.
+          This could be a parent, guardian, teacher, school counsellor,
+          relative, or another trusted adult.
+        </p>
+      </div>
+
+      <div class="card help">
+        <h2>⚠️ If you feel unsafe</h2>
+        <p>
+          Tell a trusted adult immediately and ask them to stay with you
+          while you get appropriate help. If there is an immediate danger,
+          contact your local emergency service.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>💙 Remember</h2>
+        <p>
+          Asking for help isn't a weakness. You deserve support,
+          care and someone who will listen.
+        </p>
+      </div>
+
+    </section>
+  </div>
+
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+
+    <button class="nav-btn active" onclick="showScreen('home')">
+      <span>🏠</span>
+      Home
+    </button>
+
+    <button class="nav-btn" onclick="showScreen('chat')">
+      <span>💬</span>
+      Chat
+    </button>
+
+    <button class="nav-btn" onclick="showScreen('journal')">
+      <span>📔</span>
+      Journal
+    </button>
+
+    <button class="nav-btn" onclick="showScreen('activities')">
+      <span>🌿</span>
+      Calm
+    </button>
+
+    <button class="nav-btn" onclick="showScreen('help')">
+      <span>🆘</span>
+      Help
+    </button>
+
+  </nav>
+
+</div>
+
+
+<script>
+
+  // SCREEN NAVIGATION
+  function showScreen(screenName) {
+
+    const screens = document.querySelectorAll(".screen");
+
+    screens.forEach(screen => {
+      screen.classList.remove("active");
+    });
+
+    document.getElementById(screenName).classList.add("active");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+    const navButtons = document.querySelectorAll(".nav-btn");
+
+    navButtons.forEach(button => {
+      button.classList.remove("active");
+    });
+  }
+
+
+  // MOOD CHECK-IN
+  function selectMood(button, mood) {
+
+    document.querySelectorAll(".mood").forEach(m => {
+      m.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+
+    document.getElementById("moodMessage").textContent =
+      "You're feeling " + mood.toLowerCase() +
+      ". Thanks for checking in with yourself 💙";
+  }
+
+
+  // CHAT
+  function sendMessage() {
+
+    const input = document.getElementById("chatInput");
+    const chatBox = document.getElementById("chatBox");
+
+    const message = input.value.trim();
+
+    if (message === "") return;
+
+    const userMessage = document.createElement("div");
+
+    userMessage.className = "message user";
+    userMessage.textContent = message;
+
+    chatBox.appendChild(userMessage);
+
+    input.value = "";
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    setTimeout(() => {
+
+      const botMessage = document.createElement("div");
+
+      botMessage.className = "message bot";
+
+      botMessage.textContent = getResponse(message);
+
+      chatBox.appendChild(botMessage);
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+    }, 600);
+  }
+
+
+  // DEMO SUPPORTIVE RESPONSES
+  function getResponse(message) {
+
+    const text = message.toLowerCase();
+
+    if (
+      text.includes("sad") ||
+      text.includes("unhappy") ||
+      text.includes("cry")
+    ) {
+      return "I'm sorry you're having a difficult moment. It may help to talk to someone you trust and give yourself some time to process what you're feeling. 💙";
     }
 
-
-    /* ADD MESSAGE */
-
-    function addMessage(text, type) {
-
-      const chat = document.getElementById("chat");
-
-      const message = document.createElement("div");
-
-      message.className = "message " + type;
-
-      message.textContent = text;
-
-      chat.appendChild(message);
-
-      chat.scrollTop = chat.scrollHeight;
+    if (
+      text.includes("stress") ||
+      text.includes("stressed") ||
+      text.includes("school")
+    ) {
+      return "School can sometimes feel overwhelming. Try breaking what you need to do into one small step at a time. You could also talk to a teacher, parent, guardian, or counsellor.";
     }
 
-
-    /* BOT RESPONSE */
-
-    function botReply(message) {
-
-      const text = message.toLowerCase();
-
-      let reply;
-
-      if (
-        text.includes("sad") ||
-        text.includes("unhappy") ||
-        text.includes("cry")
-      ) {
-
-        reply =
-          "I'm sorry you're feeling this way. You don't have to handle everything alone. Would you like to tell me what has been making you feel sad?";
-
-      }
-
-      else if (
-        text.includes("stress") ||
-        text.includes("stressed") ||
-        text.includes("pressure")
-      ) {
-
-        reply =
-          "That sounds like a lot to deal with. Try taking a slow breath and focusing on one thing at a time. What is causing you the most stress right now?";
-
-      }
-
-      else if (
-        text.includes("lonely") ||
-        text.includes("alone")
-      ) {
-
-        reply =
-          "Feeling lonely can be really difficult. Is there someone you trust that you could talk to or spend some time with today?";
-
-      }
-
-      else if (
-        text.includes("school") ||
-        text.includes("exam") ||
-        text.includes("teacher")
-      ) {
-
-        reply =
-          "School can sometimes feel overwhelming. Tell me what is happening at school and we can break it down together.";
-
-      }
-
-      else if (
-        text.includes("angry") ||
-        text.includes("mad")
-      ) {
-
-        reply =
-          "It sounds like something really frustrated you. Before reacting, try taking a few slow breaths. What happened?";
-
-      }
-
-      else if (
-        text.includes("happy") ||
-        text.includes("good")
-      ) {
-
-        reply =
-          "That's great to hear! 😊 What's making you feel good today?";
-
-      }
-
-      else {
-
-        reply =
-          "I'm listening. Tell me a little more about how you're feeling or what's happening.";
-
-      }
-
-      addMessage(reply, "bot");
+    if (
+      text.includes("angry") ||
+      text.includes("mad")
+    ) {
+      return "It sounds like something really bothered you. Before reacting, try taking a short pause and a few slow breaths. When you're calmer, you can decide what you want to do next.";
     }
 
+    if (
+      text.includes("happy") ||
+      text.includes("good") ||
+      text.includes("great")
+    ) {
+      return "That's great to hear! 😊 Take a moment to enjoy the feeling and notice what helped make today a good day.";
+    }
 
-    /* QUICK MESSAGE */
+    if (
+      text.includes("lonely") ||
+      text.includes("alone")
+    ) {
+      return "Feeling alone can be difficult. Consider reaching out to someone you trust, even with a simple message like 'Can we talk?'";
+    }
 
-    function quickMessage(message) {
+    return "Thanks for sharing that with me. 💙 Take your time. You could tell me more about what happened, or write about it in your journal.";
+  }
 
-      document.getElementById("userInput").value = message;
 
+  // PRESS ENTER TO SEND CHAT
+  document.getElementById("chatInput").addEventListener("keypress", function(event) {
+
+    if (event.key === "Enter") {
       sendMessage();
     }
 
+  });
 
-    /* MOOD */
 
-    function selectMood(mood) {
+  // JOURNAL
+  function saveJournal() {
 
-      addMessage("I'm feeling " + mood, "user");
+    const text = document.getElementById("journalText").value;
 
-      setTimeout(function() {
-
-        addMessage(
-          "Thanks for telling me. 💜 Your feelings are worth talking about. What's making you feel this way?",
-          "bot"
-        );
-
-      }, 600);
+    if (text.trim() === "") {
+      document.getElementById("journalStatus").textContent =
+        "Write something first ✍️";
+      return;
     }
 
+    localStorage.setItem("mindmateJournal", text);
 
-    /* ENTER KEY */
+    document.getElementById("journalStatus").textContent =
+      "Your journal entry was saved on this device 💙";
+  }
 
-    function handleEnter(event) {
 
-      if (event.key === "Enter") {
-        sendMessage();
-      }
+  // LOAD SAVED JOURNAL
+  window.addEventListener("load", function() {
 
+    const savedJournal =
+      localStorage.getItem("mindmateJournal");
+
+    if (savedJournal) {
+      document.getElementById("journalText").value =
+        savedJournal;
     }
 
-  </script>
+  });
+
+</script>
 
 </body>
 </html>
