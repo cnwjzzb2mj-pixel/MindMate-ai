@@ -2,11 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <meta name="theme-color" content="#7C5CFC">
+
+<meta name="description"
+      content="MindMate — a calm space to talk, reflect and take care of your wellbeing.">
+
+<!-- iPhone / iPad PWA -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="MindMate">
+
+<link rel="manifest" href="manifest.json">
+
+<link rel="apple-touch-icon" href="icon.svg">
 
 <title>MindMate</title>
 
@@ -20,6 +32,7 @@
 
 :root {
   --primary: #7C5CFC;
+  --primary2: #9B7EFF;
   --primary-light: #EEE9FF;
   --bg: #F7F7FB;
   --card: #FFFFFF;
@@ -27,7 +40,6 @@
   --muted: #777787;
   --border: #E9E8F0;
   --nav: rgba(255,255,255,.94);
-  --danger: #E85B67;
 }
 
 body.dark {
@@ -43,10 +55,11 @@ body.dark {
 html,
 body {
   min-height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-               "SF Pro Text", Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont,
+               "SF Pro Display", "SF Pro Text",
+               Arial, sans-serif;
 }
 
 body {
@@ -54,8 +67,7 @@ body {
 }
 
 button,
-textarea,
-input {
+textarea {
   font: inherit;
 }
 
@@ -70,8 +82,7 @@ button {
   min-height: 100vh;
   margin: auto;
   background: var(--bg);
-  position: relative;
-  padding-bottom: 88px;
+  padding-bottom: 90px;
 }
 
 /* HEADER */
@@ -92,14 +103,14 @@ button {
 
 .greeting h1 {
   font-size: 27px;
-  letter-spacing: -0.7px;
+  letter-spacing: -.7px;
 }
 
 .profile {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #8E75FF, #6040E8);
+  background: linear-gradient(135deg,#8E75FF,#6040E8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -135,7 +146,7 @@ button {
 /* HOME */
 
 .hero {
-  background: linear-gradient(135deg, #7C5CFC, #9B7EFF);
+  background: linear-gradient(135deg,#7C5CFC,#9B7EFF);
   color: white;
   border-radius: 26px;
   padding: 25px;
@@ -156,7 +167,7 @@ button {
 .hero p {
   font-size: 14px;
   line-height: 1.55;
-  opacity: .9;
+  opacity: .92;
 }
 
 .section-title {
@@ -188,6 +199,7 @@ button {
   color: var(--muted);
   font-size: 14px;
   margin-bottom: 15px;
+  line-height: 1.5;
 }
 
 .moods {
@@ -198,10 +210,9 @@ button {
 
 .mood {
   flex: 1;
-  min-width: 0;
   background: var(--bg);
   border-radius: 17px;
-  padding: 11px 5px;
+  padding: 11px 4px;
   text-align: center;
   color: var(--muted);
   transition: .2s;
@@ -282,7 +293,7 @@ button {
   width: 43px;
   height: 43px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7C5CFC, #A98FFF);
+  background: linear-gradient(135deg,#7C5CFC,#A98FFF);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -301,10 +312,10 @@ button {
 }
 
 .chat-messages {
-  min-height: 52vh;
+  min-height: 55vh;
   max-height: 58vh;
   overflow-y: auto;
-  padding: 20px 18px;
+  padding: 20px 18px 100px;
 }
 
 .message {
@@ -338,13 +349,14 @@ button {
 
 .chat-input {
   position: fixed;
-  bottom: 72px;
+  bottom: 70px;
   width: 100%;
   max-width: 520px;
   padding: 10px 15px;
   background: var(--bg);
   display: flex;
   gap: 8px;
+  z-index: 90;
 }
 
 .chat-input textarea {
@@ -453,7 +465,6 @@ button {
   border-radius: 20px;
   background: #C7C7D0;
   position: relative;
-  transition: .2s;
 }
 
 .switch::after {
@@ -476,7 +487,24 @@ button {
   left: 22px;
 }
 
-/* BOTTOM NAV */
+/* PAGE TITLE */
+
+.page-title {
+  padding: 7px 2px 18px;
+}
+
+.page-title h2 {
+  font-size: 25px;
+  letter-spacing: -.5px;
+}
+
+.page-title p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* NAVIGATION */
 
 .bottom-nav {
   position: fixed;
@@ -498,7 +526,7 @@ button {
 }
 
 .nav-item {
-  width: 20%;
+  width: 25%;
   height: 62px;
   background: none;
   color: var(--muted);
@@ -521,30 +549,13 @@ button {
   color: var(--primary);
 }
 
-/* CHAT TITLE */
-
-.page-title {
-  padding: 7px 2px 18px;
-}
-
-.page-title h2 {
-  font-size: 25px;
-  letter-spacing: -.5px;
-}
-
-.page-title p {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 5px;
-}
-
-/* NOTIFICATION */
+/* TOAST */
 
 .toast {
   position: fixed;
   top: 22px;
   left: 50%;
-  transform: translate(-50%, -80px);
+  transform: translate(-50%,-80px);
   background: #22222B;
   color: white;
   padding: 12px 18px;
@@ -555,12 +566,10 @@ button {
 }
 
 .toast.show {
-  transform: translate(-50%, 0);
+  transform: translate(-50%,0);
 }
 
-/* DESKTOP */
-
-@media (min-width: 700px) {
+@media (min-width:700px) {
   body {
     background: #EDEDF3;
   }
@@ -576,514 +585,595 @@ button {
 
 <div class="app">
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="greeting">
-      <small id="greeting">Good afternoon</small>
-      <h1>Hi, there 👋</h1>
-    </div>
+<header class="header">
+  <div class="greeting">
+    <small id="greeting">Good afternoon</small>
+    <h1>Hi, there 👋</h1>
+  </div>
+  <div class="profile">M</div>
+</header>
 
-    <div class="profile">M</div>
-  </header>
+<!-- HOME -->
 
-  <!-- HOME -->
-  <main id="home" class="page active">
+<main id="home" class="page active">
 
-    <section class="hero">
-      <div class="icon">🧠</div>
-      <h2>Your mind matters.</h2>
-      <p>
-        Welcome to MindMate — a calm space to reflect,
-        talk and take care of your emotional wellbeing.
-      </p>
-    </section>
+<section class="hero">
+  <div class="icon">🧠</div>
+  <h2>Your mind matters.</h2>
+  <p>
+    Welcome to MindMate — a calm space to reflect,
+    talk and take care of your emotional wellbeing.
+  </p>
+</section>
 
-    <div class="section-title">
-      <h3>How are you feeling?</h3>
-      <span id="moodStatus">Today</span>
-    </div>
+<div class="section-title">
+  <h3>How are you feeling?</h3>
+  <span id="moodStatus">Today</span>
+</div>
 
-    <section class="mood-card">
-      <p>Choose the mood that feels closest to you right now.</p>
+<section class="mood-card">
+  <p>Choose the mood that feels closest to you right now.</p>
 
-      <div class="moods">
-        <button class="mood" onclick="selectMood(this,'Awful')">
-          <span>😞</span>
-          <small>Awful</small>
-        </button>
+  <div class="moods">
 
-        <button class="mood" onclick="selectMood(this,'Sad')">
-          <span>😔</span>
-          <small>Sad</small>
-        </button>
+    <button class="mood" onclick="selectMood(this,'Awful')">
+      <span>😞</span>
+      <small>Awful</small>
+    </button>
 
-        <button class="mood" onclick="selectMood(this,'Okay')">
-          <span>😐</span>
-          <small>Okay</small>
-        </button>
+    <button class="mood" onclick="selectMood(this,'Sad')">
+      <span>😔</span>
+      <small>Sad</small>
+    </button>
 
-        <button class="mood" onclick="selectMood(this,'Good')">
-          <span>🙂</span>
-          <small>Good</small>
-        </button>
+    <button class="mood" onclick="selectMood(this,'Okay')">
+      <span>😐</span>
+      <small>Okay</small>
+    </button>
 
-        <button class="mood" onclick="selectMood(this,'Great')">
-          <span>😄</span>
-          <small>Great</small>
-        </button>
-      </div>
-    </section>
+    <button class="mood" onclick="selectMood(this,'Good')">
+      <span>🙂</span>
+      <small>Good</small>
+    </button>
 
-    <div class="section-title">
-      <h3>Quick actions</h3>
-    </div>
+    <button class="mood" onclick="selectMood(this,'Great')">
+      <span>😄</span>
+      <small>Great</small>
+    </button>
 
-    <section class="quick-grid">
+  </div>
+</section>
 
-      <button class="quick" onclick="openPage('chat')">
-        <div class="qicon">💬</div>
-        <strong>Talk to MindMate</strong>
-        <small>Have a conversation</small>
-      </button>
+<div class="section-title">
+  <h3>Quick actions</h3>
+</div>
 
-      <button class="quick" onclick="openPage('journal')">
-        <div class="qicon">📖</div>
-        <strong>Journal</strong>
-        <small>Write your thoughts</small>
-      </button>
+<section class="quick-grid">
 
-      <button class="quick" onclick="showToast('Take a slow, comfortable breath 🌿')">
-        <div class="qicon">🌿</div>
-        <strong>Take a moment</strong>
-        <small>Slow down and breathe</small>
-      </button>
+<button class="quick" onclick="openPage('chat')">
+  <div class="qicon">💬</div>
+  <strong>Talk to MindMate</strong>
+  <small>Have a conversation</small>
+</button>
 
-      <button class="quick" onclick="showToast('You are allowed to take things one step at a time.')">
-        <div class="qicon">❤️</div>
-        <strong>Daily reminder</strong>
-        <small>Be kind to yourself</small>
-      </button>
+<button class="quick" onclick="openPage('journal')">
+  <div class="qicon">📖</div>
+  <strong>Journal</strong>
+  <small>Write your thoughts</small>
+</button>
 
-    </section>
+<button class="quick" onclick="showToast('Take a slow, comfortable breath 🌿')">
+  <div class="qicon">🌿</div>
+  <strong>Take a moment</strong>
+  <small>Slow down and breathe</small>
+</button>
 
-  </main>
+<button class="quick" onclick="showToast('You are allowed to take things one step at a time.')">
+  <div class="qicon">❤️</div>
+  <strong>Daily reminder</strong>
+  <small>Be kind to yourself</small>
+</button>
 
-  <!-- CHAT -->
-  <main id="chat" class="page chat-page">
+</section>
 
-    <div class="chat-header">
-      <div class="ai-avatar">🧠</div>
+</main>
 
-      <div>
-        <h3>MindMate</h3>
-        <div class="online">● Here to listen</div>
-      </div>
-    </div>
+<!-- CHAT -->
 
-    <div class="chat-messages" id="messages">
+<main id="chat" class="page chat-page">
 
-      <div class="message ai">
-        <div class="bubble">
-          Hey 👋 I'm MindMate. I'm here to listen and help you
-          think through what you're feeling. What's on your mind?
-        </div>
-      </div>
+<div class="chat-header">
 
-    </div>
+  <div class="ai-avatar">🧠</div>
 
-    <div class="chat-input">
-      <textarea id="messageInput"
-        placeholder="Write what's on your mind..."
-        rows="1"></textarea>
-
-      <button class="send" onclick="sendMessage()">➤</button>
-    </div>
-
-  </main>
-
-  <!-- JOURNAL -->
-  <main id="journal" class="page">
-
-    <div class="page-title">
-      <h2>My Journal 📖</h2>
-      <p>A private space for your thoughts.</p>
-    </div>
-
-    <section class="journal-box">
-
-      <textarea id="journalText"
-        placeholder="What's on your mind today?"></textarea>
-
-      <button class="save-btn" onclick="saveJournal()">
-        Save Entry
-      </button>
-
-    </section>
-
-    <div class="section-title">
-      <h3>Journal tip</h3>
-    </div>
-
-    <section class="mood-card">
-      <p>
-        You don't need perfect words. Just write honestly about
-        what happened, how you felt, or what you hope for tomorrow.
-      </p>
-    </section>
-
-  </main>
-
-  <!-- SETTINGS -->
-  <main id="settings" class="page">
-
-    <div class="page-title">
-      <h2>Settings ⚙️</h2>
-      <p>Make MindMate feel comfortable for you.</p>
-    </div>
-
-    <section class="setting-card">
-
-      <div class="setting">
-        <div class="setting-left">
-          <div class="setting-icon">🌙</div>
-          <div>
-            <strong>Dark mode</strong>
-            <small>Use a darker appearance</small>
-          </div>
-        </div>
-
-        <button class="switch" id="darkSwitch"
-          onclick="toggleDark()"></button>
-      </div>
-
-      <div class="setting" onclick="showToast('MindMate notifications are coming soon.')">
-        <div class="setting-left">
-          <div class="setting-icon">🔔</div>
-          <div>
-            <strong>Notifications</strong>
-            <small>Daily wellbeing reminders</small>
-          </div>
-        </div>
-
-        <span>›</span>
-      </div>
-
-      <div class="setting" onclick="showToast('Your journal stays on this device.')">
-        <div class="setting-left">
-          <div class="setting-icon">🔒</div>
-          <div>
-            <strong>Privacy</strong>
-            <small>Your personal space</small>
-          </div>
-        </div>
-
-        <span>›</span>
-      </div>
-
-      <div class="setting" onclick="showToast('MindMate version 2.0')">
-        <div class="setting-left">
-          <div class="setting-icon">ℹ️</div>
-          <div>
-            <strong>About MindMate</strong>
-            <small>Version 2.0</small>
-          </div>
-        </div>
-
-        <span>›</span>
-      </div>
-
-    </section>
-
-  </main>
+  <div>
+    <h3>MindMate</h3>
+    <div class="online">● Here to listen</div>
+  </div>
 
 </div>
 
-<!-- TOAST -->
+<div class="chat-messages" id="messages">
+
+<div class="message ai">
+  <div class="bubble">
+    Hey 👋 I'm MindMate. I'm here to listen and help you
+    think through what you're feeling. What's on your mind?
+  </div>
+</div>
+
+</div>
+
+<div class="chat-input">
+
+<textarea
+id="messageInput"
+placeholder="Write what's on your mind..."
+rows="1"></textarea>
+
+<button class="send" onclick="sendMessage()">➤</button>
+
+</div>
+
+</main>
+
+<!-- JOURNAL -->
+
+<main id="journal" class="page">
+
+<div class="page-title">
+  <h2>My Journal 📖</h2>
+  <p>A private space for your thoughts.</p>
+</div>
+
+<section class="journal-box">
+
+<textarea
+id="journalText"
+placeholder="What's on your mind today?"></textarea>
+
+<button class="save-btn" onclick="saveJournal()">
+Save Entry
+</button>
+
+</section>
+
+<div class="section-title">
+  <h3>Journal tip</h3>
+</div>
+
+<section class="mood-card">
+<p>
+You don't need perfect words. Just write honestly about
+what happened, how you felt, or what you hope for tomorrow.
+</p>
+</section>
+
+</main>
+
+<!-- SETTINGS -->
+
+<main id="settings" class="page">
+
+<div class="page-title">
+  <h2>Settings ⚙️</h2>
+  <p>Make MindMate feel comfortable for you.</p>
+</div>
+
+<section class="setting-card">
+
+<div class="setting">
+
+<div class="setting-left">
+<div class="setting-icon">🌙</div>
+
+<div>
+<strong>Dark mode</strong>
+<small>Use a darker appearance</small>
+</div>
+
+</div>
+
+<button
+class="switch"
+id="darkSwitch"
+onclick="toggleDark()">
+</button>
+
+</div>
+
+<div
+class="setting"
+onclick="showToast('Notifications are coming soon.')">
+
+<div class="setting-left">
+<div class="setting-icon">🔔</div>
+
+<div>
+<strong>Notifications</strong>
+<small>Daily wellbeing reminders</small>
+</div>
+</div>
+
+<span>›</span>
+
+</div>
+
+<div
+class="setting"
+onclick="showToast('Your journal stays on this device.')">
+
+<div class="setting-left">
+<div class="setting-icon">🔒</div>
+
+<div>
+<strong>Privacy</strong>
+<small>Your personal space</small>
+</div>
+</div>
+
+<span>›</span>
+
+</div>
+
+<div
+class="setting"
+onclick="showToast('MindMate version 3.0')">
+
+<div class="setting-left">
+<div class="setting-icon">ℹ️</div>
+
+<div>
+<strong>About MindMate</strong>
+<small>Version 3.0</small>
+</div>
+</div>
+
+<span>›</span>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
 <div class="toast" id="toast"></div>
 
-<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
 
-  <button class="nav-item active"
-    onclick="openPage('home', this)">
-    <span>⌂</span>
-    <small>Home</small>
-  </button>
+<button class="nav-item active"
+onclick="openPage('home',this)">
+<span>⌂</span>
+<small>Home</small>
+</button>
 
-  <button class="nav-item"
-    onclick="openPage('chat', this)">
-    <span>💬</span>
-    <small>Chat</small>
-  </button>
+<button class="nav-item"
+onclick="openPage('chat',this)">
+<span>💬</span>
+<small>Chat</small>
+</button>
 
-  <button class="nav-item"
-    onclick="openPage('journal', this)">
-    <span>📖</span>
-    <small>Journal</small>
-  </button>
+<button class="nav-item"
+onclick="openPage('journal',this)">
+<span>📖</span>
+<small>Journal</small>
+</button>
 
-  <button class="nav-item"
-    onclick="openPage('settings', this)">
-    <span>⚙️</span>
-    <small>Settings</small>
-  </button>
+<button class="nav-item"
+onclick="openPage('settings',this)">
+<span>⚙️</span>
+<small>Settings</small>
+</button>
 
 </nav>
 
 <script>
 
-/* PAGE NAVIGATION */
+/* NAVIGATION */
 
-function openPage(pageId, button) {
+function openPage(pageId,button){
 
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
-  });
+document.querySelectorAll('.page')
+.forEach(page=>page.classList.remove('active'));
 
-  document.getElementById(pageId).classList.add('active');
+document.getElementById(pageId)
+.classList.add('active');
 
-  document.querySelectorAll('.nav-item').forEach(item => {
-    item.classList.remove('active');
-  });
+document.querySelectorAll('.nav-item')
+.forEach(item=>item.classList.remove('active'));
 
-  if (button) {
-    button.classList.add('active');
-  } else {
+if(button){
+button.classList.add('active');
+}else{
 
-    document.querySelectorAll('.nav-item').forEach(item => {
+document.querySelectorAll('.nav-item')
+.forEach(item=>{
 
-      if (item.getAttribute('onclick') &&
-          item.getAttribute('onclick').includes("'" + pageId + "'")) {
-        item.classList.add('active');
-      }
+if(
+item.getAttribute('onclick') &&
+item.getAttribute('onclick').includes("'" + pageId + "'")
+){
+item.classList.add('active');
+}
 
-    });
+});
 
-  }
+}
 
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+window.scrollTo(0,0);
 }
 
 
 /* MOOD */
 
-function selectMood(element, mood) {
+function selectMood(element,mood){
 
-  document.querySelectorAll('.mood').forEach(item => {
-    item.classList.remove('selected');
-  });
+document.querySelectorAll('.mood')
+.forEach(item=>item.classList.remove('selected'));
 
-  element.classList.add('selected');
+element.classList.add('selected');
 
-  document.getElementById('moodStatus').textContent = mood;
+document.getElementById('moodStatus')
+.textContent=mood;
 
-  localStorage.setItem('mindmateMood', mood);
+localStorage.setItem('mindmateMood',mood);
 
-  showToast('Mood saved: ' + mood);
+showToast('Mood saved: '+mood);
 }
 
 
 /* CHAT */
 
-function sendMessage() {
+function sendMessage(){
 
-  const input = document.getElementById('messageInput');
-  const text = input.value.trim();
+const input=document.getElementById('messageInput');
 
-  if (!text) return;
+const text=input.value.trim();
 
-  addMessage(text, 'user');
+if(!text)return;
 
-  input.value = '';
+addMessage(text,'user');
 
-  setTimeout(() => {
+input.value='';
 
-    const response = getAIResponse(text);
+setTimeout(()=>{
 
-    addMessage(response, 'ai');
+addMessage(getAIResponse(text),'ai');
 
-  }, 700);
+},700);
+
 }
 
 
-function addMessage(text, type) {
+function addMessage(text,type){
 
-  const messages = document.getElementById('messages');
+const messages=document.getElementById('messages');
 
-  const message = document.createElement('div');
-  message.className = 'message ' + type;
+const message=document.createElement('div');
 
-  const bubble = document.createElement('div');
-  bubble.className = 'bubble';
+message.className='message '+type;
 
-  bubble.textContent = text;
+const bubble=document.createElement('div');
 
-  message.appendChild(bubble);
-  messages.appendChild(message);
+bubble.className='bubble';
 
-  messages.scrollTop = messages.scrollHeight;
+bubble.textContent=text;
+
+message.appendChild(bubble);
+
+messages.appendChild(message);
+
+messages.scrollTop=messages.scrollHeight;
 }
 
 
-/* SIMPLE LOCAL AI RESPONSES */
+function getAIResponse(text){
 
-function getAIResponse(text) {
+const lower=text.toLowerCase();
 
-  const lower = text.toLowerCase();
+if(
+lower.includes('sad') ||
+lower.includes('upset') ||
+lower.includes('cry') ||
+lower.includes('unhappy')
+){
 
-  if (
-    lower.includes('sad') ||
-    lower.includes('upset') ||
-    lower.includes('cry') ||
-    lower.includes('unhappy')
-  ) {
-    return "I'm sorry you're having a difficult moment. You don't have to figure everything out at once. What happened that made you feel this way?";
-  }
+return "I'm sorry you're having a difficult moment. You don't have to figure everything out at once. What happened that made you feel this way?";
 
-  if (
-    lower.includes('stress') ||
-    lower.includes('stressed') ||
-    lower.includes('school')
-  ) {
-    return "That sounds like a lot to carry. Sometimes it helps to focus on one small thing you can deal with right now rather than everything at once.";
-  }
+}
 
-  if (
-    lower.includes('angry') ||
-    lower.includes('mad')
-  ) {
-    return "It sounds like something really bothered you. Taking a little space before reacting can sometimes help. What happened?";
-  }
+if(
+lower.includes('stress') ||
+lower.includes('stressed') ||
+lower.includes('school')
+){
 
-  if (
-    lower.includes('happy') ||
-    lower.includes('good') ||
-    lower.includes('great')
-  ) {
-    return "I'm glad you're feeling good 😊 What's been making your day better?";
-  }
+return "That sounds like a lot to carry. Try focusing on one small thing you can deal with right now rather than everything at once.";
 
-  if (
-    lower.includes('lonely') ||
-    lower.includes('alone')
-  ) {
-    return "Feeling alone can be difficult. If there's someone you trust, reaching out to them could help. I'm also here to listen to what you're going through.";
-  }
+}
 
-  return "Thank you for telling me. I'm listening. Tell me a little more about what's going on.";
+if(
+lower.includes('angry') ||
+lower.includes('mad')
+){
+
+return "It sounds like something really bothered you. Taking a little space before reacting can sometimes help. What happened?";
+
+}
+
+if(
+lower.includes('happy') ||
+lower.includes('good') ||
+lower.includes('great')
+){
+
+return "I'm glad you're feeling good 😊 What's been making your day better?";
+
+}
+
+if(
+lower.includes('lonely') ||
+lower.includes('alone')
+){
+
+return "Feeling alone can be difficult. If there's someone you trust, reaching out to them could help. I'm also here to listen.";
+
+}
+
+return "Thank you for telling me. I'm listening. Tell me a little more about what's going on.";
+
 }
 
 
 /* JOURNAL */
 
-function saveJournal() {
+function saveJournal(){
 
-  const text = document.getElementById('journalText').value.trim();
+const text=document
+.getElementById('journalText')
+.value.trim();
 
-  if (!text) {
-    showToast('Write something first ✍️');
-    return;
-  }
+if(!text){
 
-  localStorage.setItem('mindmateJournal', text);
+showToast('Write something first ✍️');
 
-  showToast('Journal entry saved ✓');
+return;
+}
+
+localStorage.setItem('mindmateJournal',text);
+
+showToast('Journal entry saved ✓');
 }
 
 
 /* DARK MODE */
 
-function toggleDark() {
+function toggleDark(){
 
-  document.body.classList.toggle('dark');
+document.body.classList.toggle('dark');
 
-  const isDark =
-    document.body.classList.contains('dark');
+const isDark=
+document.body.classList.contains('dark');
 
-  localStorage.setItem('mindmateDark', isDark);
+localStorage.setItem('mindmateDark',isDark);
 
-  document.getElementById('darkSwitch')
-    .classList.toggle('on', isDark);
+document.getElementById('darkSwitch')
+.classList.toggle('on',isDark);
 }
 
 
 /* TOAST */
 
-function showToast(message) {
+function showToast(message){
 
-  const toast = document.getElementById('toast');
+const toast=document.getElementById('toast');
 
-  toast.textContent = message;
-  toast.classList.add('show');
+toast.textContent=message;
 
-  clearTimeout(window.toastTimer);
+toast.classList.add('show');
 
-  window.toastTimer = setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2200);
+clearTimeout(window.toastTimer);
+
+window.toastTimer=setTimeout(()=>{
+
+toast.classList.remove('show');
+
+},2200);
+
 }
 
 
-/* LOAD SAVED DATA */
+/* LOAD DATA */
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded',()=>{
 
-  const savedMood =
-    localStorage.getItem('mindmateMood');
+const mood=localStorage.getItem('mindmateMood');
 
-  if (savedMood) {
-    document.getElementById('moodStatus').textContent =
-      savedMood;
-  }
+if(mood){
 
-  const savedJournal =
-    localStorage.getItem('mindmateJournal');
+document.getElementById('moodStatus')
+.textContent=mood;
 
-  if (savedJournal) {
-    document.getElementById('journalText').value =
-      savedJournal;
-  }
+}
 
-  const savedDark =
-    localStorage.getItem('mindmateDark');
+const journal=
+localStorage.getItem('mindmateJournal');
 
-  if (savedDark === 'true') {
-    document.body.classList.add('dark');
-    document.getElementById('darkSwitch')
-      .classList.add('on');
-  }
+if(journal){
 
-  const hour = new Date().getHours();
+document.getElementById('journalText')
+.value=journal;
 
-  let greeting = 'Good evening';
+}
 
-  if (hour < 12) {
-    greeting = 'Good morning';
-  } else if (hour < 17) {
-    greeting = 'Good afternoon';
-  }
+const dark=
+localStorage.getItem('mindmateDark');
 
-  document.getElementById('greeting').textContent =
-    greeting;
+if(dark==='true'){
+
+document.body.classList.add('dark');
+
+document.getElementById('darkSwitch')
+.classList.add('on');
+
+}
+
+const hour=new Date().getHours();
+
+let greeting='Good evening';
+
+if(hour<12){
+
+greeting='Good morning';
+
+}else if(hour<17){
+
+greeting='Good afternoon';
+
+}
+
+document.getElementById('greeting')
+.textContent=greeting;
+
 });
 
 
 /* ENTER TO SEND */
 
 document.getElementById('messageInput')
-  .addEventListener('keydown', function(event) {
+.addEventListener('keydown',function(event){
 
-    if (event.key === 'Enter' && !event.shiftKey) {
+if(event.key==='Enter' && !event.shiftKey){
 
-      event.preventDefault();
+event.preventDefault();
 
-      sendMessage();
-    }
+sendMessage();
 
-  });
+}
+
+});
+
+
+/* SERVICE WORKER */
+
+if('serviceWorker' in navigator){
+
+window.addEventListener('load',()=>{
+
+navigator.serviceWorker
+.register('./sw.js')
+.then(()=>{
+console.log('MindMate is ready to work like an app.');
+})
+.catch(error=>{
+console.log('Service worker error:',error);
+});
+
+});
+
+}
 
 </script>
 
